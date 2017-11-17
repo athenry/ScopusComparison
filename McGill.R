@@ -31,9 +31,9 @@ deptURL <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwbFiCTwa2Kd5r62CK0
 depts <- read.csv(deptURL)
 
 abs <- as.character(depts$Abbreviation)
-dept_test <- sapply(engData$C1, function(x) abs[str_detect(x, abs)])
+dept_test <- sapply(McGData$C1, function(x) abs[str_detect(x, abs)])
 
-engData<-cbind(engData,plyr::ldply(dept_test,rbind)[,1])
+engData<-cbind(McGData,plyr::ldply(dept_test,rbind)[,1])
 names(engData)[6]<-"Abbreviation"
 engDeptData <- merge(engData, depts, all.x = TRUE) ##keeps nonmatches and enters NA
 
